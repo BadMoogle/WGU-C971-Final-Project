@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.Views.InstructorDetailPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Clicked="EditInstructor_Clicked" />
+        <ToolbarItem Text="Delete" Clicked="DeleteInsctructor_Clicked" x:Name="btnDeleteCourse"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Spacing="20" Padding="15" BindingContext="{Binding Teacher}">
+        <Label Text="Name:" FontSize="Medium" />
+        <Label Text="{Binding Name}" d:Text="Instructor name" FontSize="Small"/>
+        <Label Text="Email Address:" FontSize="Medium" />
+        <Label Text="{Binding Email}" d:Text="Email Address" FontSize="Small"/>
+        <Label Text="Phone Number:" FontSize="Medium" />
+        <Label Text="{Binding PhoneNumber}" d:Text="Phone Number" FontSize="Small"/>
+    </StackLayout>
+    
+</ContentPage>

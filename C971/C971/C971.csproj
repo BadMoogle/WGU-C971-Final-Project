@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\AssessmentDetailPage.xaml.cs">
+      <DependentUpon>AssessmentDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\InstructorDetailPage.xaml.cs">
+      <DependentUpon>InstructorDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\InstructorListPage.xaml.cs">
+      <DependentUpon>InstructorListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewInstructorPage.xaml.cs">
+      <DependentUpon>NewInstructorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TermDetailPage.xaml.cs">
+      <DependentUpon>TermDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CourseDetailPage.xaml.cs">
+      <DependentUpon>CourseDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AssessmentListPage.xaml.cs">
+      <DependentUpon>AssessmentListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewAssessmentPage.xaml.cs">
+      <DependentUpon>NewAssessmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewCoursePage.xaml.cs">
+      <DependentUpon>NewCoursePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewTermPage.xaml.cs">
+      <DependentUpon>NewTermPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CourseListPage.xaml.cs">
+      <DependentUpon>CourseListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TermListPage.xaml.cs">
+      <DependentUpon>TermListPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

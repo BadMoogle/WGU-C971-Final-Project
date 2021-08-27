@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="C971.Views.NewAssessmentPage"
+             Title="New Assessment">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Assessment Name" FontSize="Small" />
+            <Entry Text="{Binding Assessment.Name}" d:Text="Assessment name" FontSize="Small" x:Name="txtbxName" />
+            <Label Text="Assessment Description" FontSize="Small" />
+            <Editor Text="{Binding Assessment.Description}" d:Text="Assessment description" FontSize="Small" Margin="0" x:Name="txtbxDescription"/>
+            <Label Text="Start Date" FontSize="Small" />
+            <DatePicker Date="{x:Static sys:DateTime.Now}" x:Name="dateStart">
+                <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2020</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+            <Label Text="End Date" FontSize="Small" />
+            <DatePicker Date="{x:Static sys:DateTime.Now}" x:Name="dateEnd">
+                <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2020</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </sys:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+            <Label Text="Course" FontSize="Small" />
+            <Picker Title="Select the Course" x:Name="cmbbxCourse" ItemsSource="{Binding Courses}" ItemDisplayBinding="{Binding CourseName}" />
+            <Label Text="Assessment Type" FontSize="Small" />
+            <Picker Title="Select the Assessment Type" x:Name="cmbbxAsssessmentType">
+                <Picker.Items>
+                    <x:String>Performance</x:String>
+                    <x:String>Objective</x:String>
+                </Picker.Items>
+            </Picker>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

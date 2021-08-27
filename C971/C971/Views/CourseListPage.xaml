@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.Views.CourseListPage"
+             Title="{Binding Title}"
+             x:Name="CourseList">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Course" Clicked="AddCourse_Clicked" />
+        <ToolbarItem Text="Delete Term" Clicked="DeleteTerm_Clicked" x:Name="btnDeleteTerm"/>
+    </ContentPage.ToolbarItems>
+
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <CollectionView x:Name="CoursesCollectionView" ItemsSource="{Binding Courses}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding CourseName}" d:Text="{Binding .}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                        <Label Text="{Binding CourseDescription}" d:Text="Course descripton" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                        <Label>
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0:MM/dd/yyyy} until {1:MM/dd/yyyy}">
+                                    <Binding Path="StartDate" />
+                                    <Binding Path="EndDate" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

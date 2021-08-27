@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.Views.CourseDetailPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Clicked="EditCourse_Clicked" />
+        <ToolbarItem Text="Delete" Clicked="DeleteCourse_Clicked" x:Name="btnDeleteCourse"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15" BindingContext="{Binding Course}">
+            <Label Text="Course:" FontSize="Medium" />
+            <Label Text="{Binding CourseName}" d:Text="Course name" FontSize="Small"/>
+            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="{Binding CourseDescription}" d:Text="Course description" FontSize="Small"/>
+            <Label Text="Instructor:" FontSize="Medium" />
+            <Label Text="{Binding Instructor.Name}" d:Text="Course instructor" FontSize="Small"/>
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnPerformanceAssessment_Clicked"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Text="Performance Assessments:" FontSize="Medium" />
+                <Label Text="{Binding PerformanceAsssessment.Name}" d:Text="Course instructor" FontSize="Small"/>
+                <Label Text="{Binding PerformanceAsssessment.Description}" d:Text="Course instructor" FontSize="Small"/>
+                <Label>
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0:MM/dd/yyyy} until {1:MM/dd/yyyy}">
+                            <Binding Path="PerformanceAsssessment.StartDate" />
+                            <Binding Path="PerformanceAsssessment.EndDate" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnObjectiveAssessment_Clicked"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Text="Objective Assessments:" FontSize="Medium" />
+                <Label Text="{Binding ObjectiveAssessment.Name}" d:Text="Course instructor" FontSize="Small"/>
+                <Label Text="{Binding ObjectiveAssessment.Description}" d:Text="Course instructor" FontSize="Small"/>
+                <Label>
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0:MM/dd/yyyy} until {1:MM/dd/yyyy}">
+                            <Binding Path="ObjectiveAssessment.StartDate" />
+                            <Binding Path="ObjectiveAssessment.EndDate" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+            <Label Text="Status:" FontSize="Medium" />
+            <Label Text="None" d:Text="Course Status" FontSize="Small" x:Name="txtCourseStatus"/>
+            <Label Text="Notes:" FontSize="Medium" />
+            <Label Text="{Binding OptionalNotes}" d:Text="Optional Notes" FontSize="Small"/>
+            <Button Text="Send Notes through SMS" Clicked="SendNotes_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

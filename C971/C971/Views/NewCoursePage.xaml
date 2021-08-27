@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="C971.Views.NewCoursePage"
+             Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+            <ScrollView>
+                <StackLayout Spacing="20" Padding="15" BindingContext="{Binding NewCourse}" >
+                    <Label Text="Course Name" FontSize="Medium" />
+                    <Entry Text="{Binding CourseName}" d:Text="Course name" FontSize="Small" x:Name="txtbxName" />
+                    <Label Text="Course Description" FontSize="Medium" />
+                    <Editor Text="{Binding CourseDescription}" d:Text="Course description" FontSize="Small" Margin="0" x:Name="txtbxDescription"  />
+                    <Label Text="Start Date" FontSize="Medium" />
+                    <DatePicker Date="{Binding StartDate}" x:Name="dateStart">
+                        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                        <DatePicker.MinimumDate>
+                            <sys:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Jan 1 2020</x:String>
+                                </x:Arguments>
+                            </sys:DateTime>
+                        </DatePicker.MinimumDate>
+                        <DatePicker.MaximumDate>
+                            <sys:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Dec 31 2050</x:String>
+                                </x:Arguments>
+                            </sys:DateTime>
+                        </DatePicker.MaximumDate>
+                    </DatePicker>
+                    <Label Text="End Date" FontSize="Medium" />
+                    <DatePicker Date="{Binding EndDate}" x:Name="dateEnd">
+                        <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                        <DatePicker.MinimumDate>
+                            <sys:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Jan 1 2020</x:String>
+                                </x:Arguments>
+                            </sys:DateTime>
+                        </DatePicker.MinimumDate>
+                        <DatePicker.MaximumDate>
+                            <sys:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Dec 31 2050</x:String>
+                                </x:Arguments>
+                            </sys:DateTime>
+                        </DatePicker.MaximumDate>
+                    </DatePicker>
+                    <Label Text="Instructor" FontSize="Medium" />
+                    <Picker Title="Select the Instructor" x:Name="cmbbxInstructor" ItemsSource="{Binding Instructors}" ItemDisplayBinding="{Binding Name}"/>
+                    <Label Text="Term" FontSize="Medium" />
+                    <Picker Title="Select the Term" x:Name="cmbbxTerm" ItemsSource="{Binding Terms}" ItemDisplayBinding="{Binding TermName}"/>
+                    <Label Text="Course Status" FontSize="Medium" />
+                    <Picker Title="Select the Course Status" x:Name="cmbbxStatus">
+                        <Picker.Items>
+                            <x:String>In Progress</x:String>
+                            <x:String>Completed</x:String>
+                            <x:String>Dropped</x:String>
+                            <x:String>Plan To Take</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="Assessments have to be added after the course is created." FontSize="Small" />
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+    
+</ContentPage>
